@@ -1,23 +1,41 @@
 import logo from './logo.svg';
+import {REACT_APP_API_URL, REACT_APP_API_KEY} from './env'
 import './App.css';
 
+import React, { useEffect, useState } from "react";
+
 function App() {
+  const [lat, setLat] = useState([]);
+  const [lon, setLon] = useState([]);
+  const [weatherData, setWeatherData] = useState([]);
+  const [forecastData, setForecastData] = useState([]);
+  
+  useEffect(() => {
+    const fetchApiResponse = async () => {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        setLat(position.coords.latitude);
+        setLon(position.coords.longitude);
+      });
+
+      await fetch(`${REACT_APP_API_URL}/weather/?lat=${lat}&lon=${lon}&units=metric&APPID=${REACT_APP_API_KEY}`)
+      .then(res => res.json())
+      .then(result => {
+        setWeatherData(result)
+        console.log(result);
+      });
+
+      await fetch(`${REACT_APP_API_URL}/forecast/?lat=${lat}&lon=${lon}&units=metric&APPID=${REACT_APP_API_KEY}`)
+      .then(res => res.json())
+      .then(result => {
+        setForecastData(result)
+        console.log(result);
+      });
+    }
+    fetchApiResponse();
+  }, [lat, lon]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
     </div>
   );
 }
