@@ -3,6 +3,7 @@ import {REACT_APP_API_URL, REACT_APP_API_KEY} from './env'
 import './App.css';
 
 import React, { useEffect, useState } from "react";
+import WeatherCard from './components/weather-card.component';
 
 function App() {
   const [lat, setLat] = useState([]);
@@ -36,7 +37,13 @@ function App() {
 
   return (
     <div className='App'>
-      <div></div>
+      <div className='col-lg-4 col-md-8 col-sm-8 backdrop'>
+        {(typeof weatherData.main != 'undefined') ? (
+          <WeatherCard weatherData={weatherData} />
+        ): (
+          <div></div>
+        )}
+      </div>
     </div>
   );
 }
