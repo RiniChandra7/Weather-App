@@ -2,38 +2,40 @@ import logo from './logo.svg';
 import {REACT_APP_API_URL, REACT_APP_API_KEY} from './env'
 import './App.css';
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import WeatherCard from './components/weather-card.component';
 
 function App() {
-  const [lat, setLat] = useState([]);
-  const [lon, setLon] = useState([]);
+  const lat = useRef(0);
+  const lon = useRef(0);
   const [weatherData, setWeatherData] = useState([]);
   const [forecastData, setForecastData] = useState([]);
   
   useEffect(() => {
     const fetchApiResponse = async () => {
       navigator.geolocation.getCurrentPosition(function(position) {
-        setLat(position.coords.latitude);
-        setLon(position.coords.longitude);
+        lat.current = position.coords.latitude;
+        lon.current = position.coords.longitude;
       });
 
-      await fetch(`${REACT_APP_API_URL}/weather/?lat=${lat}&lon=${lon}&units=metric&APPID=${REACT_APP_API_KEY}`)
+      console.log(lat.current + " " + lon.current);
+
+      await fetch(`${REACT_APP_API_URL}/weather/?lat=${lat.current}&lon=${lon.current}&units=metric&APPID=${REACT_APP_API_KEY}`)
       .then(res => res.json())
       .then(result => {
-        setWeatherData(result)
-        console.log(result);
+          setWeatherData(result)
+          console.log(result);
       });
 
-      await fetch(`${REACT_APP_API_URL}/forecast/?lat=${lat}&lon=${lon}&units=metric&APPID=${REACT_APP_API_KEY}`)
+      await fetch(`${REACT_APP_API_URL}/forecast/?lat=${lat.current}&lon=${lon.current}&units=metric&APPID=${REACT_APP_API_KEY}`)
       .then(res => res.json())
       .then(result => {
-        setForecastData(result)
-        console.log(result);
+          setForecastData(result)
+          console.log(result)
       });
     }
     fetchApiResponse();
-  }, [lat, lon]);
+  }, [lat.current, lon.current]);
 
   return (
     <div className='App'>
