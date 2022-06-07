@@ -25,6 +25,10 @@ code {
   margin-top: 15px;
 }
 
+.temp-top-clearance {
+  margin-top: 20px;
+}
+
 .weather-backdrop,
 .clear-sky {
   background-image: url('https://cdn.pixabay.com/photo/2018/08/06/22/55/sun-3588618_960_720.jpg');
@@ -81,7 +85,7 @@ code {
 
 .card-bg {
   background-color: white;
-  border: 2px solid transparent;
+  border: 2px solid dodgerblue;
   border-radius: 10px;
 }
 
@@ -103,4 +107,12 @@ code {
 
 img {
   opacity: 1!important;
+}
+
+.forecast-card-clearance {
+  margin: 20px 10px;
+}
+
+.forecast-card-top-clearance {
+  margin: 20px 0px;
 }

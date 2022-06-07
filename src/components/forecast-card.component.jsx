@@ -1,11 +1,13 @@
-const ForecastCard = ({forecast}) => {
+const ForecastCard = ({date, temp, cond, count}) => {
+    const col = (count === 5) ? 'col-2 forecast-card-clearance' : 'col-3 forecast-card-top-clearance';
+
     return (
-        <div className="col-2 card-bg city-name-top-clearance">
-            <b>{new Date(forecast.dt * 1000).toLocaleDateString('en-IN')}</b>
-            <p>{new Date(forecast.dt * 1000).toLocaleTimeString('en-IN')}</p>
+        <div className={`${col} card-bg`}>
+            <b>{date}</b>
+            <h3>{temp.toFixed(2)}&deg;C</h3>
+            <p>{cond}</p>
         </div>
     );
-    
 }
 
 export default ForecastCard;
