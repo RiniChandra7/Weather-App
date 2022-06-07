@@ -13,9 +13,94 @@ code {
 }
 
 .backdrop {
-  background-color: aqua;
   position: absolute;
-  top: 50%;
+  top: 25%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -25%);
+  border: 2px solid black;
+  border-radius: 2px;
+}
+
+.city-name-top-clearance {
+  margin-top: 15px;
+}
+
+.weather-backdrop,
+.clear-sky {
+  background-image: url('https://cdn.pixabay.com/photo/2018/08/06/22/55/sun-3588618_960_720.jpg');
+}
+
+.thunderstorm {
+  background-image: url('https://cdn.pixabay.com/photo/2014/07/23/02/41/lightning-399853_960_720.jpg');
+}
+
+.drizzle {
+  background-image: url('https://cdn.pixabay.com/photo/2020/05/03/13/41/drizzle-5125091_960_720.jpg');
+}
+
+.rain {
+  background-image: url('https://cdn.pixabay.com/photo/2020/02/20/08/42/heavy-rain-4864257_960_720.jpg');
+}
+
+.snow {
+  background-image: url('https://cdn.pixabay.com/photo/2017/02/15/11/15/wintry-2068298_960_720.jpg');
+}
+
+.mist {
+  background-image: url('https://cdn.pixabay.com/photo/2014/10/04/11/58/frosty-472871_960_720.jpg');
+}
+
+.sand {
+  background-image: url('https://cdn.pixabay.com/photo/2016/03/21/10/44/desert-1270345_960_720.jpg');
+}
+
+.squall {
+  background-image: url('https://cdn.pixabay.com/photo/2018/02/23/20/33/sky-3176547_960_720.jpg');
+}
+
+.tornado {
+  background-image: url('https://cdn.pixabay.com/photo/2020/04/28/09/46/fantasy-5103702_960_720.jpg');
+}
+
+.clouds {
+  background-image: url('https://cdn.pixabay.com/photo/2018/06/26/18/42/sky-3499982_960_720.jpg');
+}
+
+.cover-bg {
+  background-size: cover;
+}
+
+.main-weather-box {
+  width: 60%;
+  margin: auto;
+}
+
+.forecast-box {
+  margin: auto;
+}
+
+.card-bg {
+  background-color: white;
+  border: 2px solid transparent;
+  border-radius: 10px;
+}
+
+.title {
+  margin-bottom: 40px;
+  margin-left: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.left-text {
+  text-align: left;
+}
+
+.right-text {
+  text-align: right;
+}
+
+img {
+  opacity: 1!important;
 }
