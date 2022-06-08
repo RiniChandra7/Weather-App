@@ -98,20 +98,20 @@ function App() {
         <h1>Weather Now</h1>
         <p>{date.toDateString()}</p>
       </div>
-      <div className='main-weather-box card-bg'>
-        {(typeof weatherData.main != 'undefined') ? (
-          <WeatherCard weatherData={weatherData} />
-        ): (
-          <div></div>
-        )}
-      </div>
-      <div className='forecast-box col-10'>
-        {(typeof forecastData.city != 'undefined') ? (
-          <Forecast forecastList={forecastData} />
-        ): (
-          <div></div>
-        )}
-      </div>
+      <div className='main-weather-box card-bg container'>
+          {(typeof weatherData.main != 'undefined') ? (
+            <WeatherCard weatherData={weatherData} />
+          ): (
+            <div></div>
+          )}
+        </div>
+        <div className='forecast-box'>
+          {(typeof forecastData.city != 'undefined') ? (
+            <Forecast forecastList={forecastData} />
+          ): (
+            <div></div>
+          )}
+        </div>
     </div>
   );
 }

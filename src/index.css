@@ -31,7 +31,7 @@ code {
 
 .weather-backdrop,
 .clear-sky {
-  background-image: url('https://cdn.pixabay.com/photo/2018/08/06/22/55/sun-3588618_960_720.jpg');
+  background-image: url('https://cdn.pixabay.com/photo/2016/01/02/00/42/cloud-1117279_960_720.jpg');
 }
 
 .thunderstorm {
@@ -75,12 +75,21 @@ code {
 }
 
 .main-weather-box {
-  width: 60%;
+  /*width: 60%;*/
   margin: auto;
 }
 
 .forecast-box {
   margin: auto;
+}
+
+.forecast-cards-box {
+  align-items: center;
+  justify-items: center;
+}
+
+.chart-box {
+  height: 250px;
 }
 
 .card-bg {
@@ -110,9 +119,9 @@ img {
 }
 
 .forecast-card-clearance {
-  margin: 20px 10px;
+  margin: 20px 10px 20px 22px;
 }
 
 .forecast-card-top-clearance {
-  margin: 20px 0px;
+  margin: 20px 22px;
 }
