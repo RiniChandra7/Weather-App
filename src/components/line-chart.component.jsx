@@ -22,8 +22,6 @@ import {
   );
 
 export const TemperatureChart = ({chartData}) => {
-    console.log(chartData);
-
     const options = {
         maintainAspectRatio: false,
         responsive: true

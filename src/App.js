@@ -2,9 +2,10 @@ import logo from './logo.svg';
 import {REACT_APP_API_URL, REACT_APP_API_KEY} from './env'
 import './App.css';
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import WeatherCard from './components/weather-card.component';
 import Forecast from './components/forecast.component';
+import { CityContext } from './contexts/city.context';
 
 function App() {
   const lat = useRef(-1);
@@ -12,6 +13,7 @@ function App() {
   const [weatherData, setWeatherData] = useState([]);
   const [forecastData, setForecastData] = useState([]);
   const [weatherBg, setWeatherBg] = useState('clear-sky');
+  const {setCity} = useContext(CityContext);
   
   useEffect(() => {
     const fetchApiResponse = async () => {
@@ -20,20 +22,23 @@ function App() {
         lon.current = position.coords.longitude;
       });
 
-      console.log(lat.current + " " + lon.current);
+      //console.log(lat.current + " " + lon.current);
 
       await fetch(`${REACT_APP_API_URL}/weather/?lat=${lat.current}&lon=${lon.current}&units=metric&APPID=${REACT_APP_API_KEY}`)
       .then(res => res.json())
       .then(result => {
-          setWeatherData(result);
-          console.log(result);
+          if (result.name.length > 0) {
+            setWeatherData(result);
+            //console.log(result)
+            setCity(result.name);
+          }
       });
 
       await fetch(`${REACT_APP_API_URL}/forecast/?lat=${lat.current}&lon=${lon.current}&units=metric&APPID=${REACT_APP_API_KEY}`)
       .then(res => res.json())
       .then(result => {
           setForecastData(result)
-          console.log(result)
+          //console.log(result)
       });
     }
     fetchApiResponse();

@@ -38,14 +38,12 @@ const findIcon = (cond) => {
 }
 
 const Forecast = ({forecastList}) => {
-    console.log(forecastList.list)
     let forecastArray = [...forecastList.list];
     let today = new Date();
     let fcAr = forecastArray.filter((fc) => {
         let fcDate = new Date(fc.dt * 1000);
         return fcDate.getDate() > today.getDate();
     });
-    console.log(fcAr);
 
     let avgFc = [];
     let count = 1;
@@ -137,11 +135,6 @@ const Forecast = ({forecastList}) => {
     };
 
     avgFc.push(obj);
-
-    console.log(avgFc);
-    console.log(labels);
-    console.log(temp);
-    console.log(feel);
 
     const forecastItems = avgFc.map((forecast, ind) =>
         <ForecastCard date={forecast.date} temp={forecast.temp} cond={forecast.cond} count={avgFc.length} src={forecast.icon} key={ind} />
