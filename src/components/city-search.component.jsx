@@ -55,9 +55,9 @@ const CitySearch = () => {
             <div className="col-lg-3 col-sm-12 search-box">
                 <div id="myDropdown" className="dropdown-content col-sm-10 col-md-auto">
                     <input type="text" placeholder="Search.." id="myInput" onChange={searchHandler} pattern={pattern} value={searchCity} />
-                    <button type="button" className="searchBtn" onClick={() => {
+                    {!cityOptions.length && <button type="button" className="searchBtn" onClick={() => {
                         setClicker(clicker + 1);
-                    }}>Get</button>
+                    }}>Get</button>}
                     <div id="options_box">
                         {cityOptions}
                     </div>
