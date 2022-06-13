@@ -66,7 +66,7 @@ const Forecast = ({forecastList}) => {
         }
     }
 
-    for (let i = start; i < start + 8; i++) {
+    for (let i = start; i < start + 9; i++) {
         let thisTime = new Date(fcAr[i].dt * 1000);
         labels.push(thisTime.toLocaleTimeString('en-IN'));
         temp.push(fcAr[i].main.temp);

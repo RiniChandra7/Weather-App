@@ -1,6 +1,6 @@
 import WeatherSubCard from "./weather-sub-card.component";
 
-const WeatherCard = ({weatherData}) => {
+const WeatherCard = ({weatherData, lat, lon}) => {
     const src = weatherData.weather[0].icon;
     return (
         <div>

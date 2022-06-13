@@ -26,8 +26,9 @@ export const TemperatureChart = ({chartData}) => {
         maintainAspectRatio: false,
         responsive: true
     }
+    const updateFlag = useRef(<Line data={chartData} options={options} />);
 
-    return <Line data={chartData} options={options} />;
+    return updateFlag.current;
 }
 
 export default TemperatureChart;
