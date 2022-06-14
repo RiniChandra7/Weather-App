@@ -12,7 +12,6 @@ const CitySearch = () => {
         document.getElementById('myInput').value = event.target.innerText;
         
         setSearchCity("");
-        console.log(event.target.innerText);
         setCity(event.target.innerText);
         setCityOptions([]);
         setClicker(0);
@@ -22,7 +21,6 @@ const CitySearch = () => {
         if (typeof event == 'undefined')
             return;
 
-        console.log(event.target.value);
         setSearchCity(event.target.value);
     }
 
@@ -32,14 +30,12 @@ const CitySearch = () => {
 
         let input, filter;
         input = searchCity;
-        console.log(input);
         filter = input.toUpperCase();
         let cityOptionsVal = [];
         cityData.current.map((curCity, i) => {
             let c = curCity.name;
             c = c.normalize('NFD').replace(/([\u0300-\u036f]|[^a-zA-Z\s])/g, '');
             if (c.toUpperCase().indexOf(filter.toUpperCase()) === 0) {
-                console.log(curCity.name);
                 if (curCity.state.length > 0)
                     cityOptionsVal.push(<p onClick={clickHandler} key={i}>{curCity.name}, {curCity.state}, {curCity.country} [{curCity.lat}, {curCity.lon}]</p>);
                 else
@@ -51,10 +47,10 @@ const CitySearch = () => {
 
     return (
         <div className="container">
-            <p>{city}</p>
-            <div className="col-lg-3 col-sm-12 search-box">
-                <div id="myDropdown" className="dropdown-content col-sm-10 col-md-auto">
-                    <input type="text" placeholder="Search.." id="myInput" onChange={searchHandler} pattern={pattern} value={searchCity} />
+            <p className="city-name">{city}</p>
+            <div className="search-box">
+                <div id="myDropdown" className="dropdown-content form-check-inline">
+                    <input type="text" placeholder="City name..." id="myInput" onChange={searchHandler} pattern={pattern} value={searchCity} />
                     {!cityOptions.length && <button type="button" className="searchBtn" onClick={() => {
                         setClicker(clicker + 1);
                     }}>Get</button>}
@@ -62,9 +58,7 @@ const CitySearch = () => {
                         {cityOptions}
                     </div>
                 </div>
-                
             </div>
-            
         </div>
     );
 }

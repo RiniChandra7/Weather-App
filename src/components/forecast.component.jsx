@@ -161,10 +161,10 @@ const Forecast = ({forecastList}) => {
 
     return (
     <div className="container">
-        <div className="row card-bg temp-top-clearance chart-box">
+        <div className="row card-bg temp-top-clearance chart-box container">
             <TemperatureChart className="card-bg" chartData={chartData} />
         </div>
-        <div className="row forecast-cards-box">{forecastItems}</div>
+        <div className="row forecast-cards-box container">{forecastItems}</div>
     </div>
     );
 }

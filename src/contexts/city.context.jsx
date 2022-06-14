@@ -14,8 +14,7 @@ export const CityProvider = ({children}) => {
 
     useEffect(() => {
         const getCitiesHelper = async () => {
-            if (cityData.current.length == 0 && cityList.length == 0) {
-                console.log("Cities fetched");
+            if (cityData.current.length === 0 && cityList.length === 0) {
                 await fetch(`./city.json`, {
                     headers : { 
                         'Content-Type': 'application/json',
@@ -26,19 +25,8 @@ export const CityProvider = ({children}) => {
                     return response.json();
                 })
                 .then(jsondata => {
-                    console.log("Cities fetched 1");
-                    /*const ids = jsondata.map(o => o.id);
-                    const filtered = jsondata.filter(({id}, index) => !ids.includes(id, index + 1));*/
-
                     cityData.current = jsondata.map((c) => {
                         const cd = {};
-                        /*let cityFullName;
-                        if (c.country == "US") {
-                            cityFullName = c.name+","+c.state+", "+c.country;
-                        }
-                        else {
-                            cityFullName = c.name+", "+c.country;
-                        }*/
                         if (typeof c.coord !== 'undefined') {
                             cd.name = c.name;
                             cd.state = c.state;

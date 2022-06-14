@@ -9,11 +9,9 @@ import { CityContext } from './contexts/city.context';
 import CitySearch from './components/city-search.component';
 
 function App() {
-  const lat = useRef(-1);
-  const lon = useRef(-1);
-
-  //const [lat, setLat] = useState(-1);
-  //const [lon, setLon] = useState(-1);
+  //Initializing defaults with the coordinates of New Delhi, India
+  const lat = useRef(28.6139);
+  const lon = useRef(77.2090);
   
   const [weatherData, setWeatherData] = useState([]);
   const [forecastData, setForecastData] = useState([]);
@@ -31,8 +29,6 @@ function App() {
       });
   }
   
-  console.log(city);
-
   useEffect(() => {
     const fetchApiResponse = async () => {
       if (city.length > 0 && city !== "Current Location") {
@@ -48,12 +44,12 @@ function App() {
           lat.current = position.coords.latitude;
           lon.current = position.coords.longitude;
           setCity("Current Location");
+        },
+        function(error) {
+          alert("To use this app with current location weather detection capabilities, kindly allow location access.");
         });
       }
 
-      console.log(lat.current + " " + lon.current);
-
-      console.log(lat.current + " " + lon.current + " in getting weather data");
       await fetch(`${REACT_APP_API_URL}/weather/?lat=${lat.current}&lon=${lon.current}&units=metric&APPID=${REACT_APP_API_KEY}`)
       .then(res => res.json())
       .then(result => {
@@ -66,14 +62,13 @@ function App() {
       .then(res => res.json())
       .then(result => {
           setForecastData(result)
-          //console.log(result)
       });
     }
     fetchApiResponse();
   }, [lat, lon, city]);
 
   useEffect(() => {
-    if (typeof weatherData.weather != 'undefined') {
+    if (typeof weatherData.weather != 'undefined' && window.innerWidth > 599) {
       switch (weatherData.weather[0].main) {
         case 'Thunderstorm':
           setWeatherBg('thunderstorm');
@@ -145,10 +140,10 @@ function App() {
             <div></div>
           )}
         </div>
-        <div className={`col-lg-6 col-sm-12 card-bg ${weatherBg} cover-bg`} lat={lat} lon={lon}></div>
+        {window.innerWidth > 600 && <div className={`col-lg-6 col-sm-12 card-bg ${weatherBg} cover-bg`} lat={lat} lon={lon}></div>}
       </div>
       
-        <div className='forecast-box'>
+        <div className='forecast-box col-lg-11 col-md-10 col-sm-9'>
           {(typeof forecastData.city != 'undefined') ? (
             <Forecast forecastList={forecastData}  lat={lat} lon={lon} />
           ): (
