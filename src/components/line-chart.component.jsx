@@ -1,5 +1,5 @@
 import { Line } from "react-chartjs-2";
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -26,9 +26,13 @@ export const TemperatureChart = ({chartData}) => {
         maintainAspectRatio: false,
         responsive: true
     }
-    const updateFlag = useRef(<Line data={chartData} options={options} />);
+    let updateFlag = <Line data={chartData} options={options} />;
 
-    return updateFlag.current;
+    useEffect(() => {
+      updateFlag = <Line data={chartData} options={options} />
+    }, [chartData]);
+
+    return updateFlag;
 }
 
 export default TemperatureChart;
